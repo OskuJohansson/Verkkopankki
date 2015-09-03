@@ -1,23 +1,58 @@
-
 package verkkopankki.logiikka;
 
 import java.util.ArrayList;
 
 public class Asiakas {
-    
+
     private final String etunimi;
     private final String sukunimi;
+    private String käyttajatunnus;
+    private String salasana;
     private String email;
     private String puhnro;
-    private ArrayList<Tili> tilit;
-    
-        public Asiakas(String etunimi, String sukunimi) {
-            this.etunimi = etunimi;
-            this.sukunimi = sukunimi;
-            this.tilit = new ArrayList<>();
-        }
-        
-      public void lisaaTili(Tili tili) {
-          tilit.add(tili);
-      }  
+    private final ArrayList<Tili> tilit;
+
+    public Asiakas(String etunimi, String sukunimi, String käyttajatunnus, String salasana) {
+        this.etunimi = etunimi;
+        this.sukunimi = sukunimi;
+        this.käyttajatunnus = käyttajatunnus;
+        this.salasana = salasana;
+        this.tilit = new ArrayList<>();
+    }
+
+    public void lisaaTili(Tili tili) {
+        tilit.add(tili);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPuhnro() {
+        return puhnro;
+    }
+
+    public void setPuhnro(String puhnro) {
+        this.puhnro = puhnro;
+    }
+
+    public ArrayList<Tili> getTilit() {
+        return tilit;
+    }
+
+    public void setSalasana(String salasana) {
+        this.salasana = salasana;
+    }
+
+    public String getKäyttajatunnus() {
+        return käyttajatunnus;
+    }
+
+    public void setKäyttajatunnus(String käyttajatunnus) {
+        this.käyttajatunnus = käyttajatunnus;
+    }
 }
