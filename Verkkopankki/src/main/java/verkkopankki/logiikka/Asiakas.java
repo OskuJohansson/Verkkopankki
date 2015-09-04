@@ -6,7 +6,7 @@ public class Asiakas {
 
     private final String etunimi;
     private final String sukunimi;
-    private String käyttajatunnus;
+    private final String käyttajatunnus;
     private String salasana;
     private String email;
     private String puhnro;
@@ -52,7 +52,4 @@ public class Asiakas {
         return käyttajatunnus;
     }
 
-    public void setKäyttajatunnus(String käyttajatunnus) {
-        this.käyttajatunnus = käyttajatunnus;
-    }
 }

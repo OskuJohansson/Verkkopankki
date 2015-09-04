@@ -19,7 +19,9 @@ public class Jarjestelma {
 
     public void tilisiirto(Tili lahde, Tili kohde, int summa) {
         lahde.muutaSaldoa(-summa);
+        lahde.lisaaTilitapahtuma(-summa);
         kohde.muutaSaldoa(summa);
+        kohde.lisaaTilitapahtuma(summa);
     }
 
     public void tilisiirto(Tili kohde, int summa) {

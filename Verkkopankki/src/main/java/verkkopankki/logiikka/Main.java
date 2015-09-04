@@ -13,5 +13,6 @@ public class Main {
         System.out.println("Tili kuuluu käyttäjälle " + osku.getKäyttajatunnus());
         System.out.println("Tilinumero on " + oskuntili.getTilinro());
         System.out.println("Tilin saldo on " + oskuntili.getSaldo() +".00€");
+        System.out.println("lol");
     }
 }
