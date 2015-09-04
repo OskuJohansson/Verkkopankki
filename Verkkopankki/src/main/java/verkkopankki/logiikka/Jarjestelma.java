@@ -22,6 +22,10 @@ public class Jarjestelma {
         kohde.muutaSaldoa(summa);
     }
 
+    public void tilisiirto(Tili kohde, int summa) {
+        kohde.muutaSaldoa(summa);
+    }
+    
     public void luoTili(Asiakas a) {
         int apu = tilit.size() + 1;
         Tili tili = new Tili(Integer.toBinaryString(apu));
@@ -33,5 +37,14 @@ public class Jarjestelma {
         Asiakas a = new Asiakas(etunimi, sukunimi, tunnus, salasana);
         asiakkaat.add(a);
         luoTili(a);
+    }
+    
+    public Asiakas haeAsiakas(String tunnus) {
+        for (Asiakas a : asiakkaat) {
+            if(a.getKäyttajatunnus().equals(tunnus)) {
+                return a;
+            } 
+        }
+        return null;
     }
 }
