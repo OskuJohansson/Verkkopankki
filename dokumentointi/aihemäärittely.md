@@ -1,4 +1,5 @@
 Aihe: Verkkopankki
+
 Toteutetaan sovellus, jonka avulla pankin asiakkaat pääsevät tarkastelemaan pankkitietojaan tietokoneelta.
 
 Sovellus tarjoaa mahdollisuuden tarkastella pankkitilinsä saldoa sekä tilitapahtumia, maksaa laskuja tai lähettää rahaa
