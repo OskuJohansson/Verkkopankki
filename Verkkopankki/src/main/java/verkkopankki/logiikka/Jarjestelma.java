@@ -31,8 +31,7 @@ public class Jarjestelma {
     }
 
     public void luoTili(Asiakas a) {
-        int apu = tilit.size() + 1;
-        Tili tili = new Tili(Integer.toBinaryString(apu));
+        Tili tili = new Tili(tilinumerogeneraattori(tilit.size()));
         this.tilit.add(tili);
         a.lisaaTili(tili);
     }
@@ -50,5 +49,16 @@ public class Jarjestelma {
             }
         }
         return null;
+    }
+
+    private String tilinumerogeneraattori(int tilienMaara) {
+        String tilinro = "";
+        String apu = String.valueOf(tilienMaara+1);
+
+        for (int i = 0; i <= 7 - apu.length(); i++) {
+            tilinro = tilinro + "0";
+        }
+        tilinro = tilinro + apu;
+        return tilinro;
     }
 }

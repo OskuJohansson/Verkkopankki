@@ -26,6 +26,13 @@ public class Tili {
         return this.saldo;
     }
 
+    @Override
+    public String toString() {
+        return "Tilin saldo on " + saldo + "€";
+    }
+    
+    
+
     public void lisaaTilitapahtuma(Tili tili, int summa) {
         if (summa < 0) {
             tilitapahtumat.add("Tilitä siirrettiin " + summa + "€ tilille" + tili.getTilinro());
