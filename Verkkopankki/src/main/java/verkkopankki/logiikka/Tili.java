@@ -6,7 +6,7 @@ public class Tili {
 
     private final String tilinro;
     private int saldo;
-    private final ArrayList<Integer> tilitapahtumat;
+    private final ArrayList<String> tilitapahtumat;
 
     public Tili(String tilinro) {
         saldo = 0;
@@ -25,13 +25,19 @@ public class Tili {
     public int getSaldo() {
         return this.saldo;
     }
-    
-    public void lisaaTilitapahtuma(int summa) {
-        tilitapahtumat.add(summa);
+
+    public void lisaaTilitapahtuma(Tili tili, int summa) {
+        if (summa < 0) {
+            tilitapahtumat.add("Tilitä siirrettiin " + summa + "€ tilille" + tili.getTilinro());
+        }
+        if (summa > 0) {
+            tilitapahtumat.add("Tilille siirrettiin " + summa + "€ tililtä " + tili.getTilinro());
+        }
+
     }
 
-    public ArrayList<Integer> getTilitapahtumat() {
+    public ArrayList<String> getTilitapahtumat() {
         return tilitapahtumat;
     }
-    
+
 }
