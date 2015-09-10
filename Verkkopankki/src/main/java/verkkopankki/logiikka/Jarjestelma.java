@@ -41,8 +41,7 @@ public class Jarjestelma {
         a.lisaaTili(tili);
     }
 
-    public void luoAsiakas(String etunimi, String sukunimi, String tunnus, String salasana) {
-        Asiakas a = new Asiakas(etunimi, sukunimi, tunnus, salasana);
+    public void lisaaAsiakas(Asiakas a) {
         asiakkaat.add(a);
     }
 
