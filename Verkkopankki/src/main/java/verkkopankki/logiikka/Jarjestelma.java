@@ -17,9 +17,10 @@ public class Jarjestelma {
     }
 
     public void tilisiirto(Tili lahde, Tili kohde, int summa) {
-        if (summa == 0) {
+        if (summa == 0 || summa > lahde.getSaldo()) {
             return;
         }
+
         lahde.muutaSaldoa(-summa);
         lahde.lisaaTilitapahtuma(kohde, -summa);
         kohde.muutaSaldoa(summa);
@@ -27,7 +28,11 @@ public class Jarjestelma {
     }
 
     public void tilisiirto(Tili kohde, int summa) {
+        if (summa == 0 || -summa > kohde.getSaldo()) {
+            return;
+        }
         kohde.muutaSaldoa(summa);
+        kohde.lisaaTilitapahtuma(summa);
     }
 
     public void luoTili(Asiakas a) {
@@ -39,7 +44,6 @@ public class Jarjestelma {
     public void luoAsiakas(String etunimi, String sukunimi, String tunnus, String salasana) {
         Asiakas a = new Asiakas(etunimi, sukunimi, tunnus, salasana);
         asiakkaat.add(a);
-        luoTili(a);
     }
 
     public Asiakas haeAsiakas(String tunnus) {
@@ -50,10 +54,10 @@ public class Jarjestelma {
         }
         return null;
     }
-    
+
     private String tilinumerogeneraattori(int tilienMaara) {
         String tilinro = "";
-        String apu = String.valueOf(tilienMaara+1);
+        String apu = String.valueOf(tilienMaara + 1);
 
         for (int i = 0; i <= 7 - apu.length(); i++) {
             tilinro = tilinro + "0";

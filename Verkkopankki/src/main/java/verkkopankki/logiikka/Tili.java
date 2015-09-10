@@ -15,7 +15,9 @@ public class Tili {
     }
 
     public void muutaSaldoa(int summa) {
-        this.saldo += summa;
+        if (saldo >= -summa) {
+            this.saldo += summa;
+        }
     }
 
     public String getTilinro() {
@@ -28,19 +30,25 @@ public class Tili {
 
     @Override
     public String toString() {
-        return "Tilin saldo on " + saldo + "€";
+        return "Tilin " + tilinro + " saldo on " + saldo + "€";
     }
-    
-    
 
     public void lisaaTilitapahtuma(Tili tili, int summa) {
-        if (summa < 0) {
-            tilitapahtumat.add("Tilitä siirrettiin " + summa + "€ tilille" + tili.getTilinro());
+        if (summa < 0 && saldo >= -summa) {
+            tilitapahtumat.add("Tililtä siirrettiin " + (-summa) + "€ tilille " + tili.getTilinro());
         }
         if (summa > 0) {
             tilitapahtumat.add("Tilille siirrettiin " + summa + "€ tililtä " + tili.getTilinro());
         }
+    }
 
+    public void lisaaTilitapahtuma(int summa) {
+        if (summa < 0 && saldo >= -summa) {
+            tilitapahtumat.add("Tililtä nostettiin " + (-summa) + "€");
+        }
+        if (summa > 0) {
+            tilitapahtumat.add("Tilille lisättiin " + summa + "€");
+        }
     }
 
     public ArrayList<String> getTilitapahtumat() {
