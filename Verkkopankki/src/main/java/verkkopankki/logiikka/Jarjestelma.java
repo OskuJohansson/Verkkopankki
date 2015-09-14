@@ -17,7 +17,7 @@ public class Jarjestelma {
     }
 
     public void tilisiirto(Tili lahde, Tili kohde, int summa) {
-        if (summa == 0 || summa > lahde.getSaldo()) {
+        if (summa <= 0 || summa > lahde.getSaldo()) {
             return;
         }
 
@@ -27,7 +27,7 @@ public class Jarjestelma {
         kohde.lisaaTilitapahtuma(lahde, summa);
     }
 
-    public void tilisiirto(Tili kohde, int summa) {
+    public void kateistoimitus(Tili kohde, int summa) {
         if (summa == 0 || -summa > kohde.getSaldo()) {
             return;
         }
@@ -36,12 +36,26 @@ public class Jarjestelma {
     }
 
     public void luoTili(Asiakas a) {
+        if (!getAsiakkaat().contains(a)) {
+            return;
+        }
+        
         Tili tili = new Tili(tilinumerogeneraattori(tilit.size()));
-        this.tilit.add(tili);
         a.lisaaTili(tili);
+        this.tilit.add(tili);
+
+    }
+
+    public ArrayList<Tili> getTilit() {
+        return tilit;
     }
 
     public void lisaaAsiakas(Asiakas a) {
+        for (Asiakas b : asiakkaat) {
+            if (b.getKäyttajatunnus().equalsIgnoreCase(a.getKäyttajatunnus())) {
+                return;
+            }
+        }
         asiakkaat.add(a);
     }
 
@@ -55,6 +69,7 @@ public class Jarjestelma {
     }
 
     private String tilinumerogeneraattori(int tilienMaara) {
+//Muuta vielä niin että tilinumero on muodossa "XXXX XXXX"       
         String tilinro = "";
         String apu = String.valueOf(tilienMaara + 1);
 

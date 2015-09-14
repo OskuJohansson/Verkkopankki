@@ -14,6 +14,8 @@ public class JarjestelmaTest {
 
     Jarjestelma j;
     Asiakas osku;
+    Asiakas feikkiosku;
+    Asiakas jope;
 
     public JarjestelmaTest() {
     }
@@ -31,6 +33,13 @@ public class JarjestelmaTest {
 
         j = new Jarjestelma();
         osku = new Asiakas("Oskari", "Johansson", "oskajoha", "Banaan1");
+        feikkiosku = new Asiakas("Oskari", "Johansson", "Oskajoha", "Appelsiin1");
+        jope = new Asiakas("Jope", "Ruonansuu", "jope1", "salasana");
+        j.lisaaAsiakas(osku);
+        j.luoTili(osku);
+        j.lisaaAsiakas(jope);
+        j.luoTili(jope);
+        j.kateistoimitus(jope.getTilit().get(0), 500);
 
     }
 
@@ -38,18 +47,89 @@ public class JarjestelmaTest {
     public void tearDown() {
     }
 
-    // @Test
-    // public void hello() {}
     @Test
     public void lisaaAsiakasToimii() {
-        j.lisaaAsiakas(osku);
-        assertEquals(j.getAsiakkaat().get(0), osku);
+        assertEquals(osku, j.getAsiakkaat().get(0));
+    }
+
+    @Test
+    public void lisaaAsiakasEiHyvaksySamaaKayttajatunnusta() {
+        j.lisaaAsiakas(feikkiosku);
+        assertEquals(2, j.getAsiakkaat().size());
     }
 
     @Test
     public void luoTiliToimii() {
-        j.lisaaAsiakas(osku);
-        j.luoTili(osku);
-        assertEquals(j.haeAsiakas("oskajoha").getTilit().size(), 1);
+        assertEquals(1, j.haeAsiakas("oskajoha").getTilit().size());
+    }
+
+    @Test
+    public void luoTiliEiLuoTiliaRekisteroitymattomalleAsiakkaalle() {
+        j.luoTili(feikkiosku);
+        assertEquals(2, j.getTilit().size());
+    }
+
+    @Test
+    public void haeAsiakasToimii() {
+        assertEquals(osku, j.haeAsiakas(osku.getKäyttajatunnus()));
+    }
+
+    @Test
+    public void haeAsiakasPalauttaaNullVaarillaSyotteilla() {
+        assertEquals(null, j.haeAsiakas("mattimeikalainen"));
+    }
+
+    @Test
+    public void kateistoimitusToimii() {
+        assertEquals(500, jope.getTilit().get(0).getSaldo());
+    }
+
+    @Test
+    public void kateistoimitusEiHyvaksySaldoaSuurempiaNostoja() {
+        j.kateistoimitus(jope.getTilit().get(0), -501);
+        assertEquals(500, jope.getTilit().get(0).getSaldo());
+    }
+
+    @Test
+    public void kateistoimitusEiHyvaksyNollanEuronSiirtoja() {
+        j.kateistoimitus(jope.getTilit().get(0), 0);
+        assertEquals(1, jope.getTilit().get(0).getTilitapahtumat().size());
+    }
+
+    @Test
+    public void tilisiirtoToimii() {
+        j.tilisiirto(jope.getTilit().get(0), osku.getTilit().get(0), 200);
+        assertEquals(200, osku.getTilit().get(0).getSaldo());
+        assertEquals(300, jope.getTilit().get(0).getSaldo());
+    }
+
+    @Test
+    public void tilisiirtoEiHyvaksyLahteenSaldoaSuurempiaSiirtoja() {
+        j.tilisiirto(jope.getTilit().get(0), osku.getTilit().get(0), 600);
+        assertEquals(0, osku.getTilit().get(0).getSaldo());
+        assertEquals(500, jope.getTilit().get(0).getSaldo());
+    }
+
+    @Test
+    public void tilisiirtoEiHyvaksyNollanEuronSiirtoja() {
+        j.tilisiirto(jope.getTilit().get(0), osku.getTilit().get(0), 0);
+        assertEquals(1, jope.getTilit().get(0).getTilitapahtumat().size());
+        assertEquals(0, osku.getTilit().get(0).getTilitapahtumat().size());
+
+    }
+
+    @Test
+    public void tilisiirtoEiHyvaksyNegatiivisiaSiirtoja() {
+        j.tilisiirto(jope.getTilit().get(0), osku.getTilit().get(0), -100);
+        assertEquals(0, osku.getTilit().get(0).getSaldo());
+        assertEquals(500, jope.getTilit().get(0).getSaldo());
+
+    }
+
+    @Test
+    public void tilinumerogeneraattoriToimii() {
+        assertEquals("00000001", osku.getTilit().get(0).getTilinro());
+        assertEquals("00000002", jope.getTilit().get(0).getTilinro());
+
     }
 }
