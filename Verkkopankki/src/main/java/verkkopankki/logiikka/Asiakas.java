@@ -11,6 +11,7 @@ public class Asiakas {
     private String email;
     private String puhnro;
     private final ArrayList<Tili> tilit;
+    private Kortti kortti;
 
     public Asiakas(String etunimi, String sukunimi, String käyttajatunnus, String salasana) {
         this.etunimi = etunimi;
@@ -50,6 +51,14 @@ public class Asiakas {
 
     public String getKäyttajatunnus() {
         return käyttajatunnus;
+    }
+
+    public Kortti getKortti() {
+        return kortti;
+    }
+
+    public void setKortti(Kortti kortti) {
+        this.kortti = kortti;
     }
 
 }

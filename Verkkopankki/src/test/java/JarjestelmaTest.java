@@ -130,6 +130,5 @@ public class JarjestelmaTest {
     public void tilinumerogeneraattoriToimii() {
         assertEquals("00000001", osku.getTilit().get(0).getTilinro());
         assertEquals("00000002", jope.getTilit().get(0).getTilinro());
-
     }
 }

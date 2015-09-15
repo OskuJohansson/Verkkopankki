@@ -6,10 +6,12 @@ public class Jarjestelma {
 
     private final ArrayList<Tili> tilit;
     private final ArrayList<Asiakas> asiakkaat;
+    private final ArrayList<Kortti> kortit;
 
     public Jarjestelma() {
         tilit = new ArrayList<>();
         asiakkaat = new ArrayList<>();
+        kortit = new ArrayList<>();
     }
 
     public ArrayList<Asiakas> getAsiakkaat() {
@@ -27,12 +29,12 @@ public class Jarjestelma {
         kohde.lisaaTilitapahtuma(lahde, summa);
     }
 
-    public void kateistoimitus(Tili kohde, int summa) {
-        if (summa == 0 || -summa > kohde.getSaldo()) {
+    public void kateistoimitus(Kortti pankkikortti, int summa) {
+        if (summa == 0 || -summa > pankkikortti.getTili().getSaldo()) {
             return;
         }
-        kohde.muutaSaldoa(summa);
-        kohde.lisaaTilitapahtuma(summa);
+        pankkikortti.getTili().muutaSaldoa(summa);
+        pankkikortti.getTili().lisaaTilitapahtuma(summa);
     }
 
     public void luoTili(Asiakas a) {
@@ -48,6 +50,12 @@ public class Jarjestelma {
 
     public ArrayList<Tili> getTilit() {
         return tilit;
+    }
+    
+    public void luoKortti(Tili t) {
+        Kortti kortti = new Kortti(t, "K" + t.getTilinro());
+        t.setKortti(kortti);
+        kortit.add(kortti);
     }
 
     public void lisaaAsiakas(Asiakas a) {
@@ -69,7 +77,7 @@ public class Jarjestelma {
     }
 
     private String tilinumerogeneraattori(int tilienMaara) {
-//Muuta vielä niin että tilinumero on muodossa "XXXX XXXX"       
+        //Muuta vielä niin että tilinumero on muodossa "XXXX XXXX"       
         String tilinro = "";
         String apu = String.valueOf(tilienMaara + 1);
 

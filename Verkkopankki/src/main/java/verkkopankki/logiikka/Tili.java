@@ -7,6 +7,7 @@ public class Tili {
     private final String tilinro;
     private int saldo;
     private final ArrayList<String> tilitapahtumat;
+    private Kortti kortti;
 
     public Tili(String tilinro) {
         saldo = 0;
@@ -53,6 +54,14 @@ public class Tili {
 
     public ArrayList<String> getTilitapahtumat() {
         return tilitapahtumat;
+    }
+
+    public Kortti getKortti() {
+        return kortti;
+    }
+
+    public void setKortti(Kortti kortti) {
+        this.kortti = kortti;
     }
 
 }
