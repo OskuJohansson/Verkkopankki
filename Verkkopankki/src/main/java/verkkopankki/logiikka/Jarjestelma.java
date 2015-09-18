@@ -29,7 +29,7 @@ public class Jarjestelma {
         kohde.lisaaTilitapahtuma(lahde, summa);
     }
 
-    public void kateistoimitus(Kortti pankkikortti, int summa) {
+    public void korttitoimitus(Kortti pankkikortti, int summa) {
         if (summa == 0 || -summa > pankkikortti.getTili().getSaldo()) {
             return;
         }

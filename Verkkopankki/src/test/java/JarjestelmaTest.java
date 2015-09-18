@@ -39,7 +39,8 @@ public class JarjestelmaTest {
         j.luoTili(osku);
         j.lisaaAsiakas(jope);
         j.luoTili(jope);
-        j.kateistoimitus(jope.getTilit().get(0), 500);
+        j.luoKortti(jope.getTilit().get(0));
+        j.korttitoimitus(jope.getKortti(), 500);
 
     }
 
@@ -86,13 +87,13 @@ public class JarjestelmaTest {
 
     @Test
     public void kateistoimitusEiHyvaksySaldoaSuurempiaNostoja() {
-        j.kateistoimitus(jope.getTilit().get(0), -501);
+        j.korttitoimitus(jope.getKortti(), -501);
         assertEquals(500, jope.getTilit().get(0).getSaldo());
     }
 
     @Test
     public void kateistoimitusEiHyvaksyNollanEuronSiirtoja() {
-        j.kateistoimitus(jope.getTilit().get(0), 0);
+        j.korttitoimitus(jope.getKortti(), 0);
         assertEquals(1, jope.getTilit().get(0).getTilitapahtumat().size());
     }
 
