@@ -1,4 +1,4 @@
-1.9 Projektin aloitus - 2h: GitHubin valmistelu, aihemäärittely, tiedostopohjien luonti.
+﻿1.9 Projektin aloitus - 2h: GitHubin valmistelu, aihemäärittely, tiedostopohjien luonti.
 3.9 3h: NetBeans-projektin luonti ja konffaus, koodauksen aloitus, dokumentointi.
 4.9 2h: Lisää koodia, dokumenttien päivitystä.
 7.9 3h: Lisää koodia, testaus aloitettu.
@@ -9,3 +9,4 @@
 15.9 2h: Lisää koodia ja testejä.
 17.9 2h: Lisää koodia sekä vanhan muokkausta, sama testeille.
 18.9 2h: Dokumentointi päivitetty, koodia ja testejä muokattu.
+20.9 4h: Koodikatselmointi, pientä muokkausta omaan koodiin.
