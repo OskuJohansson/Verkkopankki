@@ -18,7 +18,7 @@ public class Jarjestelma {
         return asiakkaat;
     }
 
-    public void tilisiirto(Tili lahde, Tili kohde, int summa) {
+    public void tilisiirto(Tili lahde, Tili kohde, int summa) {        
         if (summa <= 0 || summa > lahde.getSaldo()) {
             return;
         }
@@ -38,6 +38,8 @@ public class Jarjestelma {
     }
 
     public void luoTili(Asiakas a) {
+        //Tiliä ei luoda järjestelmään kirjautumattomille asiakkaille, 
+        //vaan linkitetään saman tien asiakkaaseen.
         if (!getAsiakkaat().contains(a)) {
             return;
         }
