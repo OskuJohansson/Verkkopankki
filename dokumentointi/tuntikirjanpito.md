@@ -10,3 +10,4 @@
 17.9 2h: Lisää koodia sekä vanhan muokkausta, sama testeille.
 18.9 2h: Dokumentointi päivitetty, koodia ja testejä muokattu.
 20.9 4h: Koodikatselmointi, pientä muokkausta omaan koodiin.
+21.9 2h: Vanhan kertausta, graafisen ulkoasun suunnittelua päässä.
