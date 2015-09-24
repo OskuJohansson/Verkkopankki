@@ -1,5 +1,8 @@
 package verkkopankki.logiikka;
 
+import javax.swing.SwingUtilities;
+import verkkopankki.gui.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,7 +16,8 @@ public class Main {
 //         for (Tili tili : j.getTilit()) {
 //             System.out.println(tili);
 //        }
-        
+        Kirjautumisikkuna kayttoliittyma = new Kirjautumisikkuna();
+        SwingUtilities.invokeLater(kayttoliittyma);
     }
 
 }
