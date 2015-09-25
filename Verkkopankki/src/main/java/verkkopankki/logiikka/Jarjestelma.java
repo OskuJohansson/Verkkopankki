@@ -2,6 +2,12 @@ package verkkopankki.logiikka;
 
 import java.util.ArrayList;
 
+/**
+ * Tämä luokka on verkkopankin runko, se pitää kirjaa asiakkaista, niiden
+ * tileistä ja tileihin linkitetyistä pankkikorteista. Järjestelmässä kulkee
+ * kaikki tilien väliset toimitukset sekä tilin sisäiset toiminnot.
+ *
+ */
 public class Jarjestelma {
 
     private final ArrayList<Tili> tilit;
@@ -18,7 +24,15 @@ public class Jarjestelma {
         return asiakkaat;
     }
 
-    public void tilisiirto(Tili lahde, Tili kohde, int summa) {        
+    /**
+     * Metodi siirtää rahaa tililtä toiselle, jos lähtötilillä on tarpeeksi ja
+     * jos siirrettävä summa on positiivinen
+     *
+     * @param lahde Tili, jolta rahat siirtyvät
+     * @param kohde Tili, jolle rahat siirtyvät
+     * @param summa Kuinka paljon rahaa siirtyy
+     */
+    public void tilisiirto(Tili lahde, Tili kohde, int summa) {
         if (summa <= 0 || summa > lahde.getSaldo()) {
             return;
         }
@@ -29,6 +43,14 @@ public class Jarjestelma {
         kohde.lisaaTilitapahtuma(lahde, summa);
     }
 
+    /**
+     * Metodi muuttaa tilin saldoa siihen linkitetyn kortin avulla, kunhan summa
+     * ei ole suurempi kuin tilin saldo
+     *
+     * @param pankkikortti Tiliin linkitetty kortti, jonka avulla tilin saldoa
+     * muutetaan
+     * @param summa Rahamäärä, jonka verran tilin saldoa muutetaan
+     */
     public void korttitoimitus(Kortti pankkikortti, int summa) {
         if (summa == 0 || -summa > pankkikortti.getTili().getSaldo()) {
             return;
@@ -37,13 +59,17 @@ public class Jarjestelma {
         pankkikortti.getTili().lisaaTilitapahtuma(summa);
     }
 
+    /**
+     * Metodi luo tilin järjestelmään rekisteröityneelle asiakkaalle.
+     * Omistamattomia tilejä ei siis voi luoda
+     *
+     * @param a Asiakas, jolle tili luodaan
+     */
     public void luoTili(Asiakas a) {
-        //Tiliä ei luoda järjestelmään kirjautumattomille asiakkaille, 
-        //vaan linkitetään saman tien asiakkaaseen.
         if (!getAsiakkaat().contains(a)) {
             return;
         }
-        
+
         Tili tili = new Tili(tilinumerogeneraattori(tilit.size()));
         a.lisaaTili(tili);
         this.tilit.add(tili);
@@ -53,20 +79,32 @@ public class Jarjestelma {
     public ArrayList<Tili> getTilit() {
         return tilit;
     }
-    
+
+    /**
+     * Metodi luo pankkikortin, linkittää sen tiliin ja lisää sen kortteja
+     * kirjaavaan listaan
+     *
+     * @param t Tili, johon kortti linkitetään
+     */
     public void luoKortti(Tili t) {
         Kortti kortti = new Kortti(t, "K" + t.getTilinro());
         t.setKortti(kortti);
         kortit.add(kortti);
     }
 
-    public void lisaaAsiakas(Asiakas a) {
+    /**
+     * Metodi rekisteröi järjestelmään asiakkaan, jos käyttäjätunnusta ei ole jo
+     * varattu
+     *
+     * @param asiakas Asiakas, joka rekisteröidään
+     */
+    public void lisaaAsiakas(Asiakas asiakas) {
         for (Asiakas b : asiakkaat) {
-            if (b.getKäyttajatunnus().equalsIgnoreCase(a.getKäyttajatunnus())) {
+            if (b.getKäyttajatunnus().equalsIgnoreCase(asiakas.getKäyttajatunnus())) {
                 return;
             }
         }
-        asiakkaat.add(a);
+        asiakkaat.add(asiakas);
     }
 
     public Asiakas haeAsiakas(String tunnus) {

@@ -14,10 +14,11 @@ public class Kirjautumisikkuna {
     public Kirjautumisikkuna() {
         kayttajatunnusField = new JTextField();
         salasanaField = new JTextField();
-        luoKomponentit(frame);
+
     }
 
-    private void luoKomponentit(Container c) {
+    public Container luoKomponentit(Container c) {
+        
         JLabel kayttajatunnusLabel = new JLabel("Käyttäjätunnus");
         kayttajatunnusLabel.setBounds(400, 300, 50, 10);
         JLabel salasanaLabel = new JLabel("Salasana");
@@ -30,6 +31,7 @@ public class Kirjautumisikkuna {
         c.add(salasanaLabel);
         c.add(kayttajatunnusField);
         c.add(salasanaField);
+        return c;
     }
 
     public JFrame getFrame() {

@@ -1,7 +1,14 @@
 package verkkopankki.logiikka;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+/**
+ * Luokka pitää sisällään kaikki tiliin liittyvät tiedot sekä siihen
+ * mahdollisesti linkitetyn pankkikortin
+ *
+ * @author Oskari
+ */
 public class Tili {
 
     private final String tilinro;
@@ -34,6 +41,13 @@ public class Tili {
         return "Tilin " + tilinro + " saldo on " + saldo + "€";
     }
 
+    /**
+     * Metodi lisää tilitapahtumista kirjaa pitävään listaan uuden tapahtuman,
+     * joka käytiin toisen tilin kanssa
+     *
+     * @param tili Tili, jolta tai jonne summa siirtyi
+     * @param summa Se rahamäärä, joka siirrettiin
+     */
     public void lisaaTilitapahtuma(Tili tili, int summa) {
         if (summa < 0 && saldo >= -summa) {
             tilitapahtumat.add("Tililtä siirrettiin " + (-summa) + "€ tilille " + tili.getTilinro());
@@ -43,6 +57,12 @@ public class Tili {
         }
     }
 
+    /**
+     * Metodi lisää tilitapahtumista kirjaa pitävään listaan uuden tapahtuman,
+     * jossa tilille asetettiin tai tililtä nostettiin rahaa
+     *
+     * @param summa Se rahamäärä, joka tililtä nostettiin tai sinne asetettiin
+     */
     public void lisaaTilitapahtuma(int summa) {
         if (summa < 0 && saldo >= -summa) {
             tilitapahtumat.add("Tililtä nostettiin " + (-summa) + "€");

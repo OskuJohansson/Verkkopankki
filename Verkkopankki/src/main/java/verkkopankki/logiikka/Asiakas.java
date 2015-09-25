@@ -2,6 +2,12 @@ package verkkopankki.logiikka;
 
 import java.util.ArrayList;
 
+/**
+ * Luokka pitää sisällään kaikki asiakkaan henkilökohaiset tiedot ja osaa
+ * muuttaa niitä
+ *
+ * @author Oskari
+ */
 public class Asiakas {
 
     private final String etunimi;
