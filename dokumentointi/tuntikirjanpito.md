@@ -12,3 +12,4 @@
 20.9 4h: Koodikatselmointi, pientä muokkausta omaan koodiin.
 21.9 2h: Vanhan kertausta, graafisen ulkoasun suunnittelua päässä.
 22.9 3h: Lisää suunnittelua sekä toteutuksen aloitus.
+25.9 3: Javadoc logiikalle sekä GUI:n kanssa pelleilyä.
