@@ -16,8 +16,8 @@ public class Main {
 //         for (Tili tili : j.getTilit()) {
 //             System.out.println(tili);
 //        }
-        Kirjautumisikkuna kayttoliittyma = new Kirjautumisikkuna();
-        SwingUtilities.invokeLater(kayttoliittyma);
+        Kayttoliittyma kl = new Kayttoliittyma();
+        SwingUtilities.invokeLater(kl);
     }
 
 }

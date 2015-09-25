@@ -2,6 +2,6 @@
 package verkkopankki.gui;
 
 
-public class Etusivu extends Kayttoliittyma {
+public class Etusivu {
     
 }
