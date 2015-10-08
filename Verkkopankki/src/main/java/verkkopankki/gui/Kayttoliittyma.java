@@ -11,7 +11,6 @@ import javax.swing.WindowConstants;
 public class Kayttoliittyma implements Runnable {
     
     private JFrame frame;
-    private Kirjautumisikkuna k;
     
     @Override
     public void run() {
@@ -20,15 +19,15 @@ public class Kayttoliittyma implements Runnable {
         
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-//      luoKomponentit(frame.getContentPane());
-        frame.setContentPane(k.getFrame());
+        luoKomponentit(frame.getContentPane());
+
         
         frame.pack();
         frame.setVisible(true);
     }
     
     private void luoKomponentit(Container c) {
-        c = k.getFrame();
+
     }
     
     public JFrame getFrame() {

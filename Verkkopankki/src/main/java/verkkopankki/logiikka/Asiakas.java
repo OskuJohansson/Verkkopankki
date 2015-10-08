@@ -50,8 +50,15 @@ public class Asiakas {
         return tilit;
     }
 
-    public void setSalasana(String salasana) {
-        this.salasana = salasana;
+    /** Metodi vaihtaa salasanan, jos käyttäjällä on tiedossa vanha salasana
+     *
+     * @param vanhaSalasana Asiakkaan vanha salasana
+     * @param uusiSalasana Asiakkaan uusi salasana
+     */
+    public void setSalasana(String vanhaSalasana, String uusiSalasana) {
+        if (salasana.equals(vanhaSalasana)) {
+            this.salasana = uusiSalasana;
+        }
     }
 
     public String getKäyttajatunnus() {
