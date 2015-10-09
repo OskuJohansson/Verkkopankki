@@ -125,6 +125,7 @@ public class Jarjestelma {
             tilinro = tilinro + "0";
         }
         tilinro = tilinro + apu;
+        tilinro = tilinro.substring(0,4) + " " + tilinro.substring(4);
         return tilinro;
     }
 }

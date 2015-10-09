@@ -58,26 +58,26 @@ public class TiliTest {
     @Test
     public void lisaaPositiivinenTilitapahtumaToimii() {
         tili1.lisaaTilitapahtuma(tili2, 10);
-        assertEquals(tili1.getTilitapahtumat().get(0), "Tilille siirrettiin 10€ tililtä 02");
+        assertEquals(10, tili1.getTilitapahtumat().get(0).getRahamaara());
     }
 
     @Test
     public void lisaaNegatiivinenTilitapahtumaToimii() {
         tili2.muutaSaldoa(10);
         tili2.lisaaTilitapahtuma(tili1, -10);
-        assertEquals(tili2.getTilitapahtumat().get(0), "Tililtä siirrettiin 10€ tilille 01");
+        assertEquals(-10, tili2.getTilitapahtumat().get(0).getRahamaara());
     }
-    
+
     @Test
     public void lisaaPositiivinenTilitapahtumaToimii2() {
         tili1.lisaaTilitapahtuma(10);
-        assertEquals(tili1.getTilitapahtumat().get(0), "Tilille lisättiin 10€");
+        assertEquals(10, tili1.getTilitapahtumat().get(0).getRahamaara());
     }
-    
+
     @Test
     public void lisaaNegatiivinenTilitapahtumaToimii2() {
         tili1.muutaSaldoa(10);
         tili1.lisaaTilitapahtuma(-10);
-        assertEquals(tili1.getTilitapahtumat().get(0), "Tililtä nostettiin 10€");
+        assertEquals(-10, tili1.getTilitapahtumat().get(0).getRahamaara());
     }
 }
