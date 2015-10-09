@@ -1,7 +1,6 @@
 package verkkopankki.logiikka;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Luokka pitää sisällään kaikki tiliin liittyvät tiedot sekä siihen
@@ -13,7 +12,7 @@ public class Tili {
 
     private final String tilinro;
     private int saldo;
-    private final ArrayList<String> tilitapahtumat;
+    private final ArrayList<Tilitapahtuma> tilitapahtumat;
     private Kortti kortti;
 
     public Tili(String tilinro) {
@@ -49,12 +48,10 @@ public class Tili {
      * @param summa Se rahamäärä, joka siirrettiin
      */
     public void lisaaTilitapahtuma(Tili tili, int summa) {
-        if (summa < 0 && saldo >= -summa) {
-            tilitapahtumat.add("Tililtä siirrettiin " + (-summa) + "€ tilille " + tili.getTilinro());
+        if (summa != 0 && saldo >= -summa) {
+            tilitapahtumat.add(new Tilitapahtuma(summa, tili));
         }
-        if (summa > 0) {
-            tilitapahtumat.add("Tilille siirrettiin " + summa + "€ tililtä " + tili.getTilinro());
-        }
+
     }
 
     /**
@@ -64,15 +61,12 @@ public class Tili {
      * @param summa Se rahamäärä, joka tililtä nostettiin tai sinne asetettiin
      */
     public void lisaaTilitapahtuma(int summa) {
-        if (summa < 0 && saldo >= -summa) {
-            tilitapahtumat.add("Tililtä nostettiin " + (-summa) + "€");
-        }
-        if (summa > 0) {
-            tilitapahtumat.add("Tilille lisättiin " + summa + "€");
+        if (summa != 0 && saldo >= -summa) {
+            tilitapahtumat.add(new Tilitapahtuma(summa));
         }
     }
 
-    public ArrayList<String> getTilitapahtumat() {
+    public ArrayList<Tilitapahtuma> getTilitapahtumat() {
         return tilitapahtumat;
     }
 
