@@ -14,3 +14,4 @@
 22.9 3h: Lisää suunnittelua sekä toteutuksen aloitus.
 25.9 3h: Javadoc logiikalle sekä GUI:n kanssa pelleilyä.
 8.10 2h: Muutoksia logiikkaan, GUI Builderiin tutustumista.
+9.20 5h: Tilitapahtuma-luokan valmistus, Tili- ja TiliTest-luokan muokkaaminen vastaamaan uutta luokkaa. Lisää Javadocia.
