@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package verkkopankki.gui;
+
+import javax.swing.JFrame;
+import verkkopankki.logiikka.Jarjestelma;
 
 /**
  *
@@ -15,7 +17,12 @@ public class Kirjautumisikkuna extends javax.swing.JPanel {
     /**
      * Creates new form Kirjautumisikkuna
      */
-    public Kirjautumisikkuna() {
+    private final Jarjestelma j;
+    private final JFrame frame;
+
+    public Kirjautumisikkuna(JFrame frame, Jarjestelma j) {
+        this.j = j;
+        this.frame = frame;
         initComponents();
     }
 
@@ -28,26 +35,31 @@ public class Kirjautumisikkuna extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        kayttajatunnusField = new javax.swing.JTextField();
+        kayttajatunnusLabel = new javax.swing.JLabel();
+        salasanaLabel = new javax.swing.JLabel();
+        kirjauduButton = new javax.swing.JButton();
+        tervetuloaLabel = new javax.swing.JLabel();
+        salasanaField = new javax.swing.JPasswordField();
 
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        jLabel1.setText("Käyttäjätunnus");
+        kayttajatunnusLabel.setText("Käyttäjätunnus");
 
-        jLabel2.setText("Salasana");
+        salasanaLabel.setText("Salasana");
 
-        jButton1.setText("Kirjaudu");
+        kirjauduButton.setText("Kirjaudu");
+        kirjauduButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kirjauduButtonActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 28)); // NOI18N
-        jLabel3.setText("Tervetuloa Javapankkiin!");
+        tervetuloaLabel.setFont(new java.awt.Font("Ubuntu", 0, 28)); // NOI18N
+        tervetuloaLabel.setText("Tervetuloa Javapankkiin!");
 
-        jPasswordField1.setText("jPasswordField1");
+        salasanaField.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -56,44 +68,50 @@ public class Kirjautumisikkuna extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(361, 361, 361)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(tervetuloaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(kayttajatunnusLabel)
+                            .addComponent(salasanaLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1))))
+                            .addComponent(kirjauduButton, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                            .addComponent(kayttajatunnusField)
+                            .addComponent(salasanaField))))
                 .addContainerGap(591, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(147, 147, 147)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tervetuloaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(kayttajatunnusField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kayttajatunnusLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(salasanaLabel)
+                    .addComponent(salasanaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jButton1)
+                .addComponent(kirjauduButton)
                 .addContainerGap(330, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kirjauduButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirjauduButtonActionPerformed
+        if (j.haeAsiakas(kayttajatunnusField.getText()).tasmaakoSalasana(salasanaField.getText())) {
+            Etusivu etusivu = new Etusivu();
+        }
+    }//GEN-LAST:event_kirjauduButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField kayttajatunnusField;
+    private javax.swing.JLabel kayttajatunnusLabel;
+    private javax.swing.JButton kirjauduButton;
+    private javax.swing.JPasswordField salasanaField;
+    private javax.swing.JLabel salasanaLabel;
+    private javax.swing.JLabel tervetuloaLabel;
     // End of variables declaration//GEN-END:variables
 }

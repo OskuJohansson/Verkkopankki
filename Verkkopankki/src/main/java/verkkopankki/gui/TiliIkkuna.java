@@ -5,23 +5,18 @@
  */
 package verkkopankki.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Calendar;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import sun.util.calendar.CalendarDate;
+import javax.swing.JToolBar;
 import verkkopankki.logiikka.*;
 
 /**
@@ -42,6 +37,8 @@ public class TiliIkkuna {
 
     public void luoTiliIkkuna() {
         frame.setLayout(null);
+        
+        JToolBar ylapalkki = new JToolBar();
 
         JLabel tilitapahtumatLabel = new JLabel("Tilitapahtumat");
         tilitapahtumatLabel.setBounds(50, 180, 300, 15);
@@ -54,6 +51,7 @@ public class TiliIkkuna {
 
         luoTilitapahtumat(lista);
 
+        frame.add(ylapalkki);
         frame.add(tilitapahtumatLabel);
         frame.add(scrollbar);
     }
@@ -62,9 +60,9 @@ public class TiliIkkuna {
 
         for (Tilitapahtuma t : tili.getTilitapahtumat()) {
             if (t.getRahamaara() < 0) {
-                c.add(new JButton(paivaJaAika(t) + ": Tililtä siirrettiin " + -t.getRahamaara() + "€ tilille " + t.getTili().getTilinro()));
+                c.add(new JLabel(paivaJaAika(t) + ": Tililtä siirrettiin " + -t.getRahamaara() + "€ tilille " + t.getTili().getTilinro()));
             } else {
-                c.add(new JButton(paivaJaAika(t) + ": Tilille siirrettiin " + t.getRahamaara() + "€ tililtä " + t.getTili().getTilinro()));
+                c.add(new JLabel(paivaJaAika(t) + ": Tilille siirrettiin " + t.getRahamaara() + "€ tililtä " + t.getTili().getTilinro()));
             }
         }
     }
@@ -74,5 +72,8 @@ public class TiliIkkuna {
                 t.getAika().get(Calendar.MONTH) + "." + t.getAika().get(Calendar.YEAR)
                 + " " + t.getAika().get(Calendar.HOUR_OF_DAY) + ":" + t.getAika().get(Calendar.MINUTE);
     }
+
+    
+    
 
 }

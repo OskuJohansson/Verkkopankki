@@ -26,7 +26,7 @@ public class Kayttoliittyma implements Runnable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 //        luoKomponentit(frame.getContentPane());
-        luoTiliIkkuna();
+        luoKirjautumisikkuna(frame);
 
         
         
@@ -39,7 +39,7 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKirjautumisikkuna(Container c) {
-        Kirjautumisikkuna kirjautumisikkuna = new Kirjautumisikkuna();
+        Kirjautumisikkuna kirjautumisikkuna = new Kirjautumisikkuna(frame, jarjestelma);
     }
     
     private void luoEtusivu() {

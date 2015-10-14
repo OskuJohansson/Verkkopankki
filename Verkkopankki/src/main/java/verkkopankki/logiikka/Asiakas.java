@@ -65,4 +65,8 @@ public class Asiakas {
         return käyttajatunnus;
 
     }
+    
+    public boolean tasmaakoSalasana(String ehdotus) {
+        return ehdotus.equals(salasana);
+    }
 }
