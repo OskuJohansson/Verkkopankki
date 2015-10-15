@@ -117,10 +117,6 @@ public class OmatTiedotIkkuna {
             a.setPuhnro(puhnroField.getText());
             if (uusiSalasanaField.getPassword().length != 0) {
                 JOptionPane.showMessageDialog(null, "Haluatko varmasti vaihtaa salasanan?");
-            }
-
-            if (Arrays.equals(uusiSalasanaField.getPassword(), uusiSalasanaField2.getPassword())) {
-
                 a.setSalasana(vanhaSalasanaField.getText(), uusiSalasanaField.getText());
             }
 
