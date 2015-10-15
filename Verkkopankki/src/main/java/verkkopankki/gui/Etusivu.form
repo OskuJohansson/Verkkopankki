@@ -3,6 +3,9 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="f0" green="b4" red="b4" type="rgb"/>
+    </Property>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Default Cursor"/>
     </Property>
@@ -33,8 +36,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" max="32767" attributes="0"/>
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jToolBar1" pref="1280" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -43,31 +46,33 @@
               <Component id="jToolBar1" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f0" green="c8" red="be" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="224" max="-2" attributes="0"/>
-                      <Component id="tiliPanel" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="tilitLabel" pref="224" max="32767" attributes="0"/>
+                      <Component id="tiliPanel" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel2" pref="252" max="32767" attributes="0"/>
+                      <Component id="kortitLabel" pref="252" max="32767" attributes="0"/>
                       <Component id="korttiPanel" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                  <Component id="uusiMaksuNappi" min="-2" pref="214" max="-2" attributes="0"/>
-                  <EmptySpace pref="281" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -76,14 +81,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="tilitLabel" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="kortitLabel" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="korttiPanel" min="-2" max="-2" attributes="0"/>
-                      <Component id="tiliPanel" min="-2" max="-2" attributes="0"/>
-                      <Component id="uusiMaksuNappi" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="korttiPanel" max="32767" attributes="0"/>
+                      <Component id="tiliPanel" pref="400" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="121" max="32767" attributes="0"/>
               </Group>
@@ -91,7 +95,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="tilitLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -99,7 +103,7 @@
             <Property name="text" type="java.lang.String" value="Tilit"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="kortitLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -107,27 +111,11 @@
             <Property name="text" type="java.lang.String" value="Pankkikortit"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="uusiMaksuNappi">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Uusi maksu"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uusiMaksuNappiActionPerformed"/>
-          </Events>
-        </Component>
         <Container class="javax.swing.JPanel" name="tiliPanel">
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="250" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="400" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+            <Property name="columns" type="int" value="1"/>
+            <Property name="rows" type="int" value="8"/>
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JScrollPane" name="jScrollPane3">
@@ -146,7 +134,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="400" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -167,7 +155,15 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="kirjauduUlosNappi">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Kirjaudu ulos"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="omatTiedotNappi">
           <Properties>
             <Property name="text" type="java.lang.String" value="Omat tiedot"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -175,13 +171,13 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="uusiMaksuNappi">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kirjaudu ulos"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
+            <Property name="text" type="java.lang.String" value="Uusi maksu"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uusiMaksuNappiActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

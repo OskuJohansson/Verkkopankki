@@ -20,7 +20,7 @@ public class Kirjautumisikkuna extends javax.swing.JPanel {
     private final Jarjestelma j;
     private final JFrame frame;
 
-    public Kirjautumisikkuna(JFrame frame, Jarjestelma j) {
+    public Kirjautumisikkuna(JFrame frame,  Jarjestelma j) {
         this.j = j;
         this.frame = frame;
         initComponents();
@@ -101,7 +101,7 @@ public class Kirjautumisikkuna extends javax.swing.JPanel {
 
     private void kirjauduButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirjauduButtonActionPerformed
         if (j.haeAsiakas(kayttajatunnusField.getText()).tasmaakoSalasana(salasanaField.getText())) {
-            Etusivu etusivu = new Etusivu();
+            Etusivu etusivu = new Etusivu(frame, j);
         }
     }//GEN-LAST:event_kirjauduButtonActionPerformed
 

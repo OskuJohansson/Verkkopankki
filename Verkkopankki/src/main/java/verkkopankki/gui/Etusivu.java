@@ -7,6 +7,7 @@
 package verkkopankki.gui;
 
 import javax.swing.JFrame;
+import verkkopankki.logiikka.Jarjestelma;
 
 /**
  *
@@ -14,13 +15,15 @@ import javax.swing.JFrame;
  */
 public class Etusivu extends JFrame {
 
+    private final Jarjestelma j;
+    private final JFrame frame;
     /**
      * Creates new form Etusivu
      */
     
-
-    
-    public Etusivu() {
+    public Etusivu(JFrame frame, Jarjestelma j) {
+        this.frame = frame;
+        this.j = j;
         initComponents();
     }
 
@@ -34,46 +37,34 @@ public class Etusivu extends JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        uusiMaksuNappi = new javax.swing.JButton();
+        tilitLabel = new javax.swing.JLabel();
+        kortitLabel = new javax.swing.JLabel();
         tiliPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         korttiPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        kirjauduUlosNappi = new javax.swing.JButton();
+        omatTiedotNappi = new javax.swing.JButton();
+        uusiMaksuNappi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(180, 180, 240));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Tilit");
+        jPanel1.setBackground(new java.awt.Color(190, 200, 240));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Pankkikortit");
+        tilitLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tilitLabel.setText("Tilit");
 
-        uusiMaksuNappi.setText("Uusi maksu");
-        uusiMaksuNappi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uusiMaksuNappiActionPerformed(evt);
-            }
-        });
+        kortitLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        kortitLabel.setText("Pankkikortit");
 
-        javax.swing.GroupLayout tiliPanelLayout = new javax.swing.GroupLayout(tiliPanel);
-        tiliPanel.setLayout(tiliPanelLayout);
-        tiliPanelLayout.setHorizontalGroup(
-            tiliPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-        );
-        tiliPanelLayout.setVerticalGroup(
-            tiliPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
+        tiliPanel.setLayout(new java.awt.GridLayout(8, 1));
+        tiliPanel.add(jScrollPane3);
 
         javax.swing.GroupLayout korttiPanelLayout = new javax.swing.GroupLayout(korttiPanel);
         korttiPanel.setLayout(korttiPanelLayout);
@@ -83,7 +74,7 @@ public class Etusivu extends JFrame {
         );
         korttiPanelLayout.setVerticalGroup(
             korttiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -92,61 +83,65 @@ public class Etusivu extends JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tiliPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tilitLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                    .addComponent(tiliPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(74, 74, 74)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .addComponent(kortitLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                     .addComponent(korttiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(180, 180, 180)
-                .addComponent(uusiMaksuNappi, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tilitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kortitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(korttiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tiliPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(uusiMaksuNappi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(korttiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tiliPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jButton1.setText("Omat tiedot");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        kirjauduUlosNappi.setText("Kirjaudu ulos");
+        kirjauduUlosNappi.setFocusable(false);
+        kirjauduUlosNappi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        kirjauduUlosNappi.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(kirjauduUlosNappi);
 
-        jButton2.setText("Kirjaudu ulos");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        omatTiedotNappi.setText("Omat tiedot");
+        omatTiedotNappi.setFocusable(false);
+        omatTiedotNappi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        omatTiedotNappi.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(omatTiedotNappi);
+
+        uusiMaksuNappi.setText("Uusi maksu");
+        uusiMaksuNappi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uusiMaksuNappiActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(uusiMaksuNappi);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -160,16 +155,16 @@ public class Etusivu extends JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton kirjauduUlosNappi;
+    private javax.swing.JLabel kortitLabel;
     private javax.swing.JPanel korttiPanel;
+    private javax.swing.JButton omatTiedotNappi;
     private javax.swing.JPanel tiliPanel;
+    private javax.swing.JLabel tilitLabel;
     private javax.swing.JButton uusiMaksuNappi;
     // End of variables declaration//GEN-END:variables
 }

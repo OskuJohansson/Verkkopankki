@@ -26,6 +26,14 @@ public class Asiakas {
         this.tilit = new ArrayList<>();
     }
 
+    public String getEtunimi() {
+        return etunimi;
+    }
+
+    public String getSukunimi() {
+        return sukunimi;
+    }
+
     public void lisaaTili(Tili tili) {
         tilit.add(tili);
     }

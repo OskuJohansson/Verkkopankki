@@ -31,6 +31,7 @@ public class Main {
         
         
         Kayttoliittyma kl = new Kayttoliittyma(j);
+        
         SwingUtilities.invokeLater(kl);
 
     }

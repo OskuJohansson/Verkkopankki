@@ -26,16 +26,16 @@ public class Kayttoliittyma implements Runnable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 //        luoKomponentit(frame.getContentPane());
-        luoKirjautumisikkuna(frame);
-
-        
+//        luoKirjautumisikkuna(frame);
+        luoOmatTiedotIkkuna();       
         
         frame.pack();
         frame.setVisible(true);
     }
 
     private void luoKomponentit(Container c) {
-
+        JLabel l = new JLabel("Hey");
+        c.add(l);
     }
 
     private void luoKirjautumisikkuna(Container c) {
@@ -43,12 +43,17 @@ public class Kayttoliittyma implements Runnable {
     }
     
     private void luoEtusivu() {
-        Etusivu etusivu = new Etusivu();
+        Etusivu etusivu = new Etusivu(frame, jarjestelma);
     }
     
     private void luoTiliIkkuna() {
         TiliIkkuna tiliIkkuna = new TiliIkkuna(frame, jarjestelma, jarjestelma.getTilit().get(0));
         tiliIkkuna.luoTiliIkkuna();
+    }
+    
+    private void luoOmatTiedotIkkuna() {
+        OmatTiedotIkkuna ikkuna = new OmatTiedotIkkuna(jarjestelma, jarjestelma.getAsiakkaat().get(0));
+        frame.getContentPane().add(ikkuna.luoOmatTiedotIkkuna());
     }
 
     public JFrame getFrame() {
