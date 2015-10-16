@@ -27,24 +27,24 @@ public class OmatTiedotIkkuna {
     private final JTextField kayttisField;
     private final JTextField etunimiField;
     private final JTextField sukunimiField;
-    private JTextField sahkopostiField;
-    private JTextField puhnroField;
-    private JPasswordField vanhaSalasanaField;
-    private JPasswordField uusiSalasanaField;
-    private JPasswordField uusiSalasanaField2;
+    private final JTextField sahkopostiField;
+    private final JTextField puhnroField;
+    private final JPasswordField vanhaSalasanaField;
+    private final JPasswordField uusiSalasanaField;
+    private final JPasswordField uusiSalasanaField2;
 
     public OmatTiedotIkkuna(Jarjestelma j, Asiakas a) {
         this.ikkuna = new JPanel();
         this.j = j;
         this.a = a;
-        kayttisField = new JTextField(a.getKäyttajatunnus());
-        etunimiField = new JTextField(a.getEtunimi());
-        sukunimiField = new JTextField(a.getSukunimi());
-        sahkopostiField = new JTextField(a.getEmail());
-        puhnroField = new JTextField(a.getPuhnro());
-        vanhaSalasanaField = new JPasswordField();
-        uusiSalasanaField = new JPasswordField();
-        uusiSalasanaField2 = new JPasswordField();
+        this.kayttisField = new JTextField(a.getKäyttajatunnus());
+        this.etunimiField = new JTextField(a.getEtunimi());
+        this.sukunimiField = new JTextField(a.getSukunimi());
+        this.sahkopostiField = new JTextField(a.getEmail());
+        this.puhnroField = new JTextField(a.getPuhnro());
+        this.vanhaSalasanaField = new JPasswordField();
+        this.uusiSalasanaField = new JPasswordField();
+        this.uusiSalasanaField2 = new JPasswordField();
 
     }
 
@@ -76,7 +76,7 @@ public class OmatTiedotIkkuna {
         sukunimiField.setForeground(Color.GRAY);
 
         JButton tallennaButton = new JButton("Tallenna tiedot");
-        tallennaButton.addMouseListener(new tallentaja());
+        tallennaButton.addMouseListener(new Tallentaja());
 
         tietoPanel.add(kayttisLabel);
         tietoPanel.add(kayttisField);
@@ -101,23 +101,36 @@ public class OmatTiedotIkkuna {
         return ikkuna;
     }
 
-    private class tallentaja implements MouseListener {
+    private class Tallentaja implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (!a.tasmaakoSalasana(vanhaSalasanaField.getText())) {
-                JOptionPane.showMessageDialog(null, "Väärä salasana");
+            if (vanhaSalasanaField.getPassword().length == 0) {
+                JOptionPane.showMessageDialog(null, "Sinun täytyy kirjoittaa vanha salasanasi tallentaaksesi muutokset.");
                 return;
             }
+
+            if (!a.tasmaakoSalasana(vanhaSalasanaField.getText())) {
+                JOptionPane.showMessageDialog(null, "Väärä salasana!");
+                return;
+            }
+
             if (!Arrays.equals(uusiSalasanaField.getPassword(), uusiSalasanaField2.getPassword())) {
                 JOptionPane.showMessageDialog(null, "Antamasi salasanat eivät täsmänneet. Kokeile uudestaan.");
                 return;
             }
+            
             a.setEmail(sahkopostiField.getText());
             a.setPuhnro(puhnroField.getText());
+
+//            Yllä on jo tarkistettu onko molempien salasanakenttien sisältö sama, joten riittää tarkistaa onko toinen tyhjä.
             if (uusiSalasanaField.getPassword().length != 0) {
-                JOptionPane.showMessageDialog(null, "Haluatko varmasti vaihtaa salasanan?");
-                a.setSalasana(vanhaSalasanaField.getText(), uusiSalasanaField.getText());
+                Object[] options = {"Kyllä", "Ei"};
+                int vahvistus = JOptionPane.showOptionDialog(null, "Haluatko varmasti vaihtaa salasanan?", "Vahvistus", JOptionPane.DEFAULT_OPTION, JOptionPane.CANCEL_OPTION, null, options, options[0]);
+
+                if (vahvistus == 0) {
+                    a.setSalasana(vanhaSalasanaField.getText(), uusiSalasanaField.getText());
+                }
             }
 
         }

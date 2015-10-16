@@ -25,9 +25,8 @@ public class Kayttoliittyma implements Runnable {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-//        luoKomponentit(frame.getContentPane());
-//        luoKirjautumisikkuna(frame);
-        luoOmatTiedotIkkuna();       
+//        luoKirjautumisikkuna(frame.getContentPane());   
+        luoEtusivu();
         
         frame.pack();
         frame.setVisible(true);
@@ -39,11 +38,13 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKirjautumisikkuna(Container c) {
-        Kirjautumisikkuna kirjautumisikkuna = new Kirjautumisikkuna(frame, jarjestelma);
+        Kirjautumisikkuna ikkuna = new Kirjautumisikkuna(jarjestelma, frame);
+        c.add(ikkuna.luoKirjautumisikkuna());
     }
     
     private void luoEtusivu() {
-        Etusivu etusivu = new Etusivu(frame, jarjestelma);
+        Etusivu etusivu = new Etusivu(frame, jarjestelma, jarjestelma.getAsiakkaat().get(0));
+        etusivu.luoEtusivu();
     }
     
     private void luoTiliIkkuna() {
