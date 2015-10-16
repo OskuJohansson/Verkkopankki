@@ -21,8 +21,8 @@ public class Kayttoliittyma implements Runnable {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
- //       luoKirjautumisikkuna();   
-        luoEtusivu();
+        luoKirjautumisikkuna();   
+//        luoEtusivu();
 
         frame.pack();
         frame.setVisible(true);

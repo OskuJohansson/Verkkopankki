@@ -20,10 +20,10 @@ public class Ylapalkki {
     private final Asiakas asiakas;
     private final JPanel ikkuna;
     private final JButton kirjauduUlosButton;
-    private JButton etusivuButton;
-    private JButton omatTiedotButton;
-    private JButton pankkikortitButton;
-    private JButton uusiMaksuButton;
+    private final JButton etusivuButton;
+    private final JButton omatTiedotButton;
+    private final JButton pankkikortitButton;
+    private final JButton uusiMaksuButton;
 
     public Ylapalkki(JFrame frame, JPanel ikkuna, Jarjestelma jarjestelma, Asiakas asiakas) {
         this.frame = frame;

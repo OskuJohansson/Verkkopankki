@@ -31,9 +31,9 @@ public class Kirjautumisikkuna {
     public Kirjautumisikkuna(Jarjestelma j, JFrame frame) {
         this.jarjestelma = j;
         this.frame = frame;
-        ikkuna = new JPanel();
-        kayttisField = new JTextField();
-        salasanaField = new JPasswordField();
+        this.ikkuna = new JPanel();
+        this.kayttisField = new JTextField();
+        this.salasanaField = new JPasswordField();
     }
     
     
