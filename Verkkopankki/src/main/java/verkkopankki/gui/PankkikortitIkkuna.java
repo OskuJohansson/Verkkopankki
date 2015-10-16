@@ -8,34 +8,35 @@ import verkkopankki.logiikka.Jarjestelma;
 
 /**
  *
- * @author Oskari
+ * @author oskajoha
  */
-public class MaksuIkkuna {
-
+public class PankkikortitIkkuna {
+    
     private final JFrame frame;
-    private final Jarjestelma jarjestelma;
     private final JPanel ikkuna;
+    private final Jarjestelma jarjestelma;
     private final Asiakas asiakas;
 
-    public MaksuIkkuna(JFrame frame, Jarjestelma jarjestelma, Asiakas asiakas) {
+    public PankkikortitIkkuna(JFrame frame, Jarjestelma jarjestelma, Asiakas asiakas) {
         this.frame = frame;
+        this.ikkuna = new JPanel();
         this.jarjestelma = jarjestelma;
         this.asiakas = asiakas;
-        this.ikkuna = new JPanel();
-
     }
-
-    public void luoMaksuIkkuna() {
-        ikkuna.setLayout(null);
+    
+    public void luoPankkikortitIkkuna() {
+          ikkuna.setLayout(null);
 
         Ylapalkki ylapalkki = new Ylapalkki(frame, ikkuna, jarjestelma, asiakas);
 
         JLabel testi = new JLabel("Tulossa...");
-        testi.setBounds(400, 40, 100, 20);
+        testi.setBounds(400, 400, 100, 20);
 
         ikkuna.add(testi);
         frame.getContentPane().add(ikkuna);
         ylapalkki.luoYlapalkki();
     }
-
+    
+    
+    
 }

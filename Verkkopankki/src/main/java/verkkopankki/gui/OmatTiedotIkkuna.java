@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,9 +22,10 @@ import verkkopankki.logiikka.Jarjestelma;
  */
 public class OmatTiedotIkkuna {
 
+    private final JFrame frame;
     private final JPanel ikkuna;
-    private final Jarjestelma j;
-    private final Asiakas a;
+    private final Jarjestelma jarjestelma;
+    private final Asiakas asiakas;
     private final JTextField kayttisField;
     private final JTextField etunimiField;
     private final JTextField sukunimiField;
@@ -33,10 +35,11 @@ public class OmatTiedotIkkuna {
     private final JPasswordField uusiSalasanaField;
     private final JPasswordField uusiSalasanaField2;
 
-    public OmatTiedotIkkuna(Jarjestelma j, Asiakas a) {
+    public OmatTiedotIkkuna(JFrame frame, Jarjestelma j, Asiakas a) {
+        this.frame = frame;
         this.ikkuna = new JPanel();
-        this.j = j;
-        this.a = a;
+        this.jarjestelma = j;
+        this.asiakas = a;
         this.kayttisField = new JTextField(a.getKäyttajatunnus());
         this.etunimiField = new JTextField(a.getEtunimi());
         this.sukunimiField = new JTextField(a.getSukunimi());
@@ -48,8 +51,11 @@ public class OmatTiedotIkkuna {
 
     }
 
-    public Container luoOmatTiedotIkkuna() {
+    public void luoOmatTiedotIkkuna() {
         ikkuna.setLayout(null);
+        
+        Ylapalkki ylapalkki = new Ylapalkki(frame, ikkuna, jarjestelma, asiakas);
+        
         JPanel tietoPanel = new JPanel();
         tietoPanel.setBounds(80, 200, 370, 300);
         tietoPanel.setLayout(new GridLayout(9, 2, 0, 5));
@@ -96,9 +102,10 @@ public class OmatTiedotIkkuna {
         tietoPanel.add(uusiSalasanaField2);
         tietoPanel.add(new JLabel(""));
         tietoPanel.add(tallennaButton);
+        
         ikkuna.add(tietoPanel);
-
-        return ikkuna;
+        frame.getContentPane().add(ikkuna);
+        ylapalkki.luoYlapalkki();
     }
 
     private class Tallentaja implements MouseListener {
@@ -110,7 +117,7 @@ public class OmatTiedotIkkuna {
                 return;
             }
 
-            if (!a.tasmaakoSalasana(vanhaSalasanaField.getText())) {
+            if (!asiakas.tasmaakoSalasana(vanhaSalasanaField.getText())) {
                 JOptionPane.showMessageDialog(null, "Väärä salasana!");
                 return;
             }
@@ -119,9 +126,9 @@ public class OmatTiedotIkkuna {
                 JOptionPane.showMessageDialog(null, "Antamasi salasanat eivät täsmänneet. Kokeile uudestaan.");
                 return;
             }
-            
-            a.setEmail(sahkopostiField.getText());
-            a.setPuhnro(puhnroField.getText());
+
+            asiakas.setEmail(sahkopostiField.getText());
+            asiakas.setPuhnro(puhnroField.getText());
 
 //            Yllä on jo tarkistettu onko molempien salasanakenttien sisältö sama, joten riittää tarkistaa onko toinen tyhjä.
             if (uusiSalasanaField.getPassword().length != 0) {
@@ -129,7 +136,7 @@ public class OmatTiedotIkkuna {
                 int vahvistus = JOptionPane.showOptionDialog(null, "Haluatko varmasti vaihtaa salasanan?", "Vahvistus", JOptionPane.DEFAULT_OPTION, JOptionPane.CANCEL_OPTION, null, options, options[0]);
 
                 if (vahvistus == 0) {
-                    a.setSalasana(vanhaSalasanaField.getText(), uusiSalasanaField.getText());
+                    asiakas.setSalasana(vanhaSalasanaField.getText(), uusiSalasanaField.getText());
                 }
             }
 

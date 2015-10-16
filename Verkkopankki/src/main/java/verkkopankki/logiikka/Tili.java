@@ -11,19 +11,19 @@ import java.util.ArrayList;
 public class Tili {
 
     private final String tilinro;
-    private int saldo;
+    private int saldoSentteinä;
     private final ArrayList<Tilitapahtuma> tilitapahtumat;
     private Kortti kortti;
 
     public Tili(String tilinro) {
-        saldo = 0;
+        saldoSentteinä = 0;
         this.tilinro = tilinro;
         tilitapahtumat = new ArrayList<>();
     }
 
     public void muutaSaldoa(int summa) {
-        if (saldo >= -summa) {
-            this.saldo += summa;
+        if (saldoSentteinä >= -summa) {
+            this.saldoSentteinä += summa;
         }
     }
 
@@ -32,12 +32,12 @@ public class Tili {
     }
 
     public int getSaldo() {
-        return this.saldo;
+        return this.saldoSentteinä;
     }
 
     @Override
     public String toString() {
-        return "Tilin " + tilinro + " saldo on " + saldo + "€";
+        return "Tilin " + tilinro + " saldo on " + saldoSentteinä/100 + "." + saldoSentteinä%100 + "€";
     }
 
     /**
@@ -48,7 +48,7 @@ public class Tili {
      * @param summa Se rahamäärä, joka siirrettiin
      */
     public void lisaaTilitapahtuma(Tili tili, int summa) {
-        if (summa != 0 && saldo >= -summa) {
+        if (summa != 0 && saldoSentteinä >= -summa) {
             tilitapahtumat.add(new Tilitapahtuma(summa, tili));
         }
 
@@ -61,7 +61,7 @@ public class Tili {
      * @param summa Se rahamäärä, joka tililtä nostettiin tai sinne asetettiin
      */
     public void lisaaTilitapahtuma(int summa) {
-        if (summa != 0 && saldo >= -summa) {
+        if (summa != 0 && saldoSentteinä >= -summa) {
             tilitapahtumat.add(new Tilitapahtuma(summa));
         }
     }

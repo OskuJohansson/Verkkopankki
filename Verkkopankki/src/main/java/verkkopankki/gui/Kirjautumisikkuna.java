@@ -38,7 +38,7 @@ public class Kirjautumisikkuna {
     
     
 
-    public JPanel luoKirjautumisikkuna() {
+    public void luoKirjautumisikkuna() {
         ikkuna.setLayout(null);
         
         JLabel tervetuloaLabel = new JLabel("Tervetuloa Javapankkiin!");
@@ -46,7 +46,7 @@ public class Kirjautumisikkuna {
         tervetuloaLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
         
         JPanel tietoIkkuna = new JPanel();
-        tietoIkkuna.setBounds(500, 250, 210, 50);
+        tietoIkkuna.setBounds(500, 250, 240, 50);
         tietoIkkuna.setLayout(new GridLayout(2, 2, 0, 5));
         
         JLabel kayttisLabel = new JLabel("Käyttäjätunnus:");
@@ -59,14 +59,14 @@ public class Kirjautumisikkuna {
         
         JButton kirjauduButton = new JButton("Kirjaudu");
         kirjauduButton.addMouseListener(new Kirjautuja());
-        kirjauduButton.setBounds(500, 310, 210, 25);
+        kirjauduButton.setBounds(500, 310, 240, 25);
         
         
         ikkuna.add(tervetuloaLabel);
         ikkuna.add(tietoIkkuna);
         ikkuna.add(kirjauduButton);
         
-        return ikkuna;
+        frame.getContentPane().add(ikkuna);
     }
     
     private class Kirjautuja implements MouseListener {
