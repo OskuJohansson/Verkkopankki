@@ -21,23 +21,21 @@ public class Kayttoliittyma implements Runnable {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        luoKirjautumisikkuna();   
-//        luoEtusivu();
+        luoKirjautumisikkuna();
 
         frame.pack();
         frame.setVisible(true);
     }
 
     private void luoKirjautumisikkuna() {
-        Kirjautumisikkuna kirjautumisIkkuna = new Kirjautumisikkuna(jarjestelma, frame);
-        kirjautumisIkkuna.luoKirjautumisikkuna();
+        Kirjautumisikkuna kirjautumisIkkuna = new Kirjautumisikkuna(frame, jarjestelma);
+        kirjautumisIkkuna.luoKomponentit();
     }
 
     private void luoEtusivu() {
         Etusivu etusivu = new Etusivu(frame, jarjestelma, jarjestelma.getAsiakkaat().get(0));
-        etusivu.luoEtusivu();
+        etusivu.luoKomponentit();
     }
-
 
     public JFrame getFrame() {
         return frame;

@@ -1,7 +1,7 @@
 package verkkopankki.gui;
 
 import java.awt.Color;
-import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,44 +20,42 @@ import verkkopankki.logiikka.Jarjestelma;
  *
  * @author Oskari
  */
-public class OmatTiedotIkkuna {
+public class OmatTiedotIkkuna extends Ikkuna {
 
     private final JFrame frame;
     private final JPanel ikkuna;
     private final Jarjestelma jarjestelma;
     private final Asiakas asiakas;
-    private final JTextField kayttisField;
-    private final JTextField etunimiField;
-    private final JTextField sukunimiField;
-    private final JTextField sahkopostiField;
-    private final JTextField puhnroField;
+    private final JTextField kayttisField, etunimiField, sukunimiField, sahkopostiField, puhnroField;
     private final JPasswordField vanhaSalasanaField;
     private final JPasswordField uusiSalasanaField;
     private final JPasswordField uusiSalasanaField2;
 
-    public OmatTiedotIkkuna(JFrame frame, Jarjestelma j, Asiakas a) {
+    public OmatTiedotIkkuna(JFrame frame, Jarjestelma jarjestelma, Asiakas asiakas) {
+        super(frame, jarjestelma);
         this.frame = frame;
         this.ikkuna = new JPanel();
-        this.jarjestelma = j;
-        this.asiakas = a;
-        this.kayttisField = new JTextField(a.getKäyttajatunnus());
-        this.etunimiField = new JTextField(a.getEtunimi());
-        this.sukunimiField = new JTextField(a.getSukunimi());
-        this.sahkopostiField = new JTextField(a.getEmail());
-        this.puhnroField = new JTextField(a.getPuhnro());
+        this.jarjestelma = jarjestelma;
+        this.asiakas = asiakas;
+        this.kayttisField = new JTextField(asiakas.getKäyttajatunnus());
+        this.etunimiField = new JTextField(asiakas.getEtunimi());
+        this.sukunimiField = new JTextField(asiakas.getSukunimi());
+        this.sahkopostiField = new JTextField(asiakas.getEmail());
+        this.puhnroField = new JTextField(asiakas.getPuhnro());
         this.vanhaSalasanaField = new JPasswordField();
         this.uusiSalasanaField = new JPasswordField();
         this.uusiSalasanaField2 = new JPasswordField();
 
     }
 
-    public void luoOmatTiedotIkkuna() {
+    @Override
+    public void luoKomponentit() {
         ikkuna.setLayout(null);
-        
+
         Ylapalkki ylapalkki = new Ylapalkki(frame, ikkuna, jarjestelma, asiakas);
-        
+
         JPanel tietoPanel = new JPanel();
-        tietoPanel.setBounds(80, 200, 370, 300);
+        tietoPanel.setBounds(50, 150, 370, 300);
         tietoPanel.setLayout(new GridLayout(9, 2, 0, 5));
 
         JLabel kayttisLabel = new JLabel("Käyttäjätunnus:");
@@ -82,7 +80,7 @@ public class OmatTiedotIkkuna {
         sukunimiField.setForeground(Color.GRAY);
 
         JButton tallennaButton = new JButton("Tallenna tiedot");
-        tallennaButton.addMouseListener(new Tallentaja());
+        tallennaButton.addMouseListener(new TietojenTallentaja());
 
         tietoPanel.add(kayttisLabel);
         tietoPanel.add(kayttisField);
@@ -102,13 +100,25 @@ public class OmatTiedotIkkuna {
         tietoPanel.add(uusiSalasanaField2);
         tietoPanel.add(new JLabel(""));
         tietoPanel.add(tallennaButton);
-        
+
         ikkuna.add(tietoPanel);
+        ikkuna.add(ohjeteksti());
         frame.getContentPane().add(ikkuna);
-        ylapalkki.luoYlapalkki();
+        ylapalkki.luoKomponentit();
     }
 
-    private class Tallentaja implements MouseListener {
+    private JLabel ohjeteksti() {
+        JLabel ohjeLabel = new JLabel("<html>Tällä sivulla pystyt vaihtaman henkilökohtaisia tietojasi.<br>"
+                + "Turvallisuussyistä omaa nimeä tai käyttäjätunnusta ei pysty muuttamaan itse.<br>"
+                + "Tiedot tallennetaan syöttämällä salasana.<br>"
+                + "Jos salasanaa haluaa muuttaa, täytyy myös täyttää uusi salasana kahteen kertaan."
+                + "</html>");
+        ohjeLabel.setBounds(700, 150, 530, 150);
+        ohjeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
+        return ohjeLabel;
+    }
+
+    private class TietojenTallentaja implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -127,18 +137,23 @@ public class OmatTiedotIkkuna {
                 return;
             }
 
-            asiakas.setEmail(sahkopostiField.getText());
-            asiakas.setPuhnro(puhnroField.getText());
-
-//            Yllä on jo tarkistettu onko molempien salasanakenttien sisältö sama, joten riittää tarkistaa onko toinen tyhjä.
+            //Yllä on jo tarkistettu onko molempien salasanakenttien sisältö sama, joten riittää tarkistaa onko toinen tyhjä.
             if (uusiSalasanaField.getPassword().length != 0) {
                 Object[] options = {"Kyllä", "Ei"};
                 int vahvistus = JOptionPane.showOptionDialog(null, "Haluatko varmasti vaihtaa salasanan?", "Vahvistus", JOptionPane.DEFAULT_OPTION, JOptionPane.CANCEL_OPTION, null, options, options[0]);
 
                 if (vahvistus == 0) {
                     asiakas.setSalasana(vanhaSalasanaField.getText(), uusiSalasanaField.getText());
+                    vanhaSalasanaField.setText(null);
+                    uusiSalasanaField.setText(null);
+                    uusiSalasanaField2.setText(null);
+                    JOptionPane.showMessageDialog(null, "Salasana vaihdettu!");
+
                 }
             }
+
+            asiakas.setEmail(sahkopostiField.getText());
+            asiakas.setPuhnro(puhnroField.getText());
 
         }
 

@@ -116,6 +116,15 @@ public class Jarjestelma {
         return null;
     }
 
+    public Tili haeTili(String tilinro) {
+        for (Tili t : tilit) {
+            if (t.getTilinro().equals(tilinro)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     private String tilinumerogeneraattori(int tilienMaara) {
         //Muuta vielä niin että tilinumero on muodossa "XXXX XXXX"       
         String tilinro = "";
@@ -125,7 +134,7 @@ public class Jarjestelma {
             tilinro = tilinro + "0";
         }
         tilinro = tilinro + apu;
-        tilinro = tilinro.substring(0,4) + " " + tilinro.substring(4);
+        tilinro = tilinro.substring(0, 4) + " " + tilinro.substring(4);
         return tilinro;
     }
 }

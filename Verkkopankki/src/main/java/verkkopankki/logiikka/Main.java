@@ -12,6 +12,9 @@ public class Main {
         Asiakas osku = new Asiakas("Oskari", "Johansson", "oskajoha", "banaan1");
         j.lisaaAsiakas(osku);
         j.luoTili(osku);
+        j.luoTili(osku);
+        j.luoTili(osku);
+        j.luoTili(osku);
         
         Asiakas sanni = new Asiakas("Sanni", "Visakko", "sannivisakko", "eiole");
         j.lisaaAsiakas(sanni);

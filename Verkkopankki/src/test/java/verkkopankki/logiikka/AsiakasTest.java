@@ -45,4 +45,17 @@ public class AsiakasTest {
         asiakas.lisaaTili(tili);
         assertEquals(asiakas.getTilit().get(0), tili);
     }
+    
+    @Test
+    public void setSalasanaToimii() {
+        asiakas.setSalasana("Banaan1", "Uusi");
+        assertEquals(true, asiakas.tasmaakoSalasana("Uusi"));
+    }
+    
+    @Test
+    public void setSalasanaEiVaihdaJosEiTiedaSalasanaa() {
+        asiakas.setSalasana("Randomarvaus", "uusi");
+        assertEquals(false, asiakas.tasmaakoSalasana("Randomarvaus"));
+        assertEquals(true, asiakas.tasmaakoSalasana("Banaan1"));
+    }
 }

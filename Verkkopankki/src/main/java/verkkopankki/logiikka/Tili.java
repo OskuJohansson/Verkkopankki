@@ -37,7 +37,7 @@ public class Tili {
 
     @Override
     public String toString() {
-        return "Tilin " + tilinro + " saldo on " + saldoSentteinä/100 + "." + saldoSentteinä%100 + "€";
+        return tilinro + " Saldo: " + saldoSentteinä/100 + "." + saldoSentteinä%100 + "€";
     }
 
     /**

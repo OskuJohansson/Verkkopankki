@@ -1,7 +1,6 @@
 package verkkopankki.logiikka;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -27,8 +26,8 @@ public class Tilitapahtuma {
      */
     public Tilitapahtuma(int rahamaara) {
         this.rahamaara = rahamaara;
-        aika = new GregorianCalendar();
-        toinenTili = null;
+        this.aika = new GregorianCalendar();
+        this.toinenTili = null;
     }
 
     /**
@@ -40,7 +39,7 @@ public class Tilitapahtuma {
     public Tilitapahtuma(int rahamaara, Tili tili) {
         this.toinenTili = tili;
         this.rahamaara = rahamaara;
-        aika = new GregorianCalendar();
+        this.aika = new GregorianCalendar();
     }
 
     /**
@@ -52,7 +51,7 @@ public class Tilitapahtuma {
     public Tilitapahtuma(int rahamaara, Calendar aika) {
         this.rahamaara = rahamaara;
         this.aika = aika;
-        toinenTili = null;
+        this.toinenTili = null;
     }
 
     /**
@@ -68,7 +67,10 @@ public class Tilitapahtuma {
         this.aika = aika;
     }
 
-    public Tili getTili() {
+    public Tili getTili() throws Exception {
+        if (toinenTili == null) {
+            throw new Exception("Toista Tiliä ei ole");
+        }
         return toinenTili;
     }
 
