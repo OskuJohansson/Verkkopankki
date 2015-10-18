@@ -20,4 +20,5 @@
 14.10. 5h: lisää GUI-pelleilyä.
 15.10. 4h: vielä kerran GUI-pelleilyä.
 16.10. 4h: GUI Builderit Nevadaan ja manuaalinen korvaus. Kuuntelijoiden lisäystä.
-17.10. 7h: Projekti alustavasti valmis, pientä hienosäätöä mahdollista tehdä jos on aikaa. PITit generoitu ja muuta pientä.
+17.10. 9h: Projekti alustavasti valmis, pientä hienosäätöä mahdollista tehdä jos on aikaa. PITit generoitu ja muuta pientä.
+18.10. 3h: Bugien korjausta ja dokumentoinnin viilausta.
