@@ -11,6 +11,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import static java.lang.Integer.max;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,9 +64,6 @@ public class TiliIkkuna extends Ikkuna {
         } catch (Exception ex) {
             Logger.getLogger(TiliIkkuna.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
 
         ikkuna.add(tilitapahtumatLabel);
         ikkuna.add(scrollbar);
@@ -128,9 +127,9 @@ public class TiliIkkuna extends Ikkuna {
     }
 
     private String paivaJaAika(Tilitapahtuma t) {
-        return "" + t.getAika().get(Calendar.DAY_OF_WEEK_IN_MONTH) + "."
-                + t.getAika().get(Calendar.MONTH) + "." + t.getAika().get(Calendar.YEAR)
-                + " " + t.getAika().get(Calendar.HOUR_OF_DAY) + ":" + t.getAika().get(Calendar.MINUTE);
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Calendar cal = Calendar.getInstance();
+        return dateFormat.format(cal.getTime());
     }
 
 }

@@ -58,7 +58,8 @@ public class Asiakas {
         return tilit;
     }
 
-    /** Metodi vaihtaa salasanan, jos käyttäjällä on tiedossa vanha salasana
+    /**
+     * Metodi vaihtaa salasanan, jos käyttäjällä on tiedossa vanha salasana
      *
      * @param vanhaSalasana Asiakkaan vanha salasana
      * @param uusiSalasana Asiakkaan uusi salasana
@@ -73,7 +74,14 @@ public class Asiakas {
         return käyttajatunnus;
 
     }
-    
+
+    /**
+     * Metodi testaa onko annettu ehdotus asiakkaan salasana. Näin ei tarvitse
+     * käyttää epäilyttävää getSalasana() -metodia.
+     *
+     * @param ehdotus salasanaehdotus
+     * @return onko ehdotus tilin salasana vai ei
+     */
     public boolean tasmaakoSalasana(String ehdotus) {
         return ehdotus.equals(salasana);
     }

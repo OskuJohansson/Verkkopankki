@@ -67,10 +67,7 @@ public class Tilitapahtuma {
         this.aika = aika;
     }
 
-    public Tili getTili() throws Exception {
-        if (toinenTili == null) {
-            throw new Exception("Toista Tiliä ei ole");
-        }
+    public Tili getTili() {
         return toinenTili;
     }
 

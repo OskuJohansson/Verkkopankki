@@ -1,6 +1,7 @@
 package verkkopankki.logiikka;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Luokka pitää sisällään kaikki tiliin liittyvät tiedot sekä siihen
@@ -16,9 +17,9 @@ public class Tili {
     private Kortti kortti;
 
     public Tili(String tilinro) {
-        saldoSentteinä = 0;
+        this.saldoSentteinä = 0;
         this.tilinro = tilinro;
-        tilitapahtumat = new ArrayList<>();
+        this.tilitapahtumat = new ArrayList<>();
     }
 
     public void muutaSaldoa(int summa) {
@@ -37,7 +38,7 @@ public class Tili {
 
     @Override
     public String toString() {
-        return tilinro + " Saldo: " + saldoSentteinä/100 + "." + saldoSentteinä%100 + "€";
+        return tilinro + " Saldo: " + saldoSentteinä / 100 + "." + saldoSentteinä % 100 + "€";
     }
 
     /**
@@ -52,6 +53,19 @@ public class Tili {
             tilitapahtumat.add(new Tilitapahtuma(summa, tili));
         }
 
+    }
+
+    /**
+     * Metodi on samankaltainen kuin yllä, mutta tapahtuma-ajan voi asettaa itse
+     *
+     * @param tili Tili, jolta tai jonne summa siirtyi
+     * @param summa Se rahamäärä, joka siirrettiin
+     * @param aika aika, jolloin tilisiirto tapahtui
+     */
+    public void lisaaTilitapahtuma(Tili tili, int summa, Calendar aika) {
+        if (summa != 0 && saldoSentteinä >= -summa) {
+            tilitapahtumat.add(new Tilitapahtuma(summa, tili, aika));
+        }
     }
 
     /**
