@@ -128,7 +128,7 @@ public class TiliIkkuna extends Ikkuna {
 
     private String paivaJaAika(Tilitapahtuma t) {
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = t.getAika();
         return dateFormat.format(cal.getTime());
     }
 

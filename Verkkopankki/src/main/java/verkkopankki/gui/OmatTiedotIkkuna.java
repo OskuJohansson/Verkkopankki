@@ -144,17 +144,25 @@ public class OmatTiedotIkkuna extends Ikkuna {
 
                 if (vahvistus == 0) {
                     asiakas.setSalasana(vanhaSalasanaField.getText(), uusiSalasanaField.getText());
-                    vanhaSalasanaField.setText(null);
-                    uusiSalasanaField.setText(null);
-                    uusiSalasanaField2.setText(null);
+                    asiakas.setEmail(sahkopostiField.getText());
+                    asiakas.setPuhnro(puhnroField.getText());
+                    tyhjennaSalasanakentat();
                     JOptionPane.showMessageDialog(null, "Salasana vaihdettu!");
-
+                    return;
                 }
             }
 
             asiakas.setEmail(sahkopostiField.getText());
             asiakas.setPuhnro(puhnroField.getText());
+            tyhjennaSalasanakentat();
+            JOptionPane.showMessageDialog(null, "Tiedot tallennettu!");
 
+        }
+
+        private void tyhjennaSalasanakentat() {
+            vanhaSalasanaField.setText(null);
+            uusiSalasanaField.setText(null);
+            uusiSalasanaField2.setText(null);
         }
 
         @Override
